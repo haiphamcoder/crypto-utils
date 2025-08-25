@@ -25,6 +25,7 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 - See in-depth Keccak overview in [docs/Keccak-Technical-Documentation.md](docs/Keccak-Technical-Documentation.md)
 - See in-depth RIPEMD overview in [docs/RIPEMD-Technical-Documentation.md](docs/RIPEMD-Technical-Documentation.md)
 - See in-depth BLAKE overview in [docs/BLAKE-Technical-Documentation.md](docs/BLAKE-Technical-Documentation.md)
+- See in-depth AES overview in [docs/AES-Technical-Documentation.md](docs/AES-Technical-Documentation.md)
 
 ### **MD Family Hash Functions**
 
@@ -67,6 +68,15 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 - **ChaCha-Based Design**: Based on ChaCha stream cipher for security and speed
 - **Performance Optimized**: Faster than SHA-2/SHA-3 family
 - **Cryptocurrency Support**: Used in Monero, Decred, and other altcoins
+
+### **AES Encryption**
+
+- **AES-128/192/256**: Advanced Encryption Standard with multiple key sizes
+- **Multiple Modes**: ECB, CBC, CFB, OFB, CTR, GCM for different use cases
+- **Padding Schemes**: NoPadding, PKCS5, PKCS7 for data formatting
+- **File Encryption**: Support for encrypting/decrypting files
+- **Key Derivation**: PBKDF2 password-based key generation
+- **Encoding Support**: HEX, Base64, UTF-8 input/output formats
 
 ### **Input/Output Encoding**
 
@@ -224,6 +234,38 @@ String blake2s128 = BLAKEUtil.blake2s128Hex("Hello World");
 String blake2s256 = BLAKEUtil.blake2s256Hex("Hello World");
 ```
 
+### **AES Encryption Usage**
+
+```java
+import com.haiphamcoder.crypto.encryption.AESUtil;
+import javax.crypto.SecretKey;
+
+// Generate AES keys
+SecretKey key = AESUtil.generateKey(); // 256-bit by default
+SecretKey key128 = AESUtil.generateKey(AESUtil.KEY_SIZE_128);
+
+// Basic encryption/decryption
+byte[] encrypted = AESUtil.encrypt("Hello World", key);
+String decrypted = AESUtil.decryptString(encrypted, key);
+
+// Custom mode and padding
+byte[] encrypted = AESUtil.encrypt("Hello World", key, 
+    AESUtil.MODE_GCM, AESUtil.PADDING_NONE);
+
+// File encryption
+AESUtil.encryptFile(inputFile, encryptedFile, key);
+AESUtil.decryptFile(encryptedFile, decryptedFile, key);
+
+// Password-based key generation
+String password = "mySecretPassword";
+byte[] salt = "randomSalt123".getBytes(StandardCharsets.UTF_8);
+SecretKey keyFromPassword = AESUtil.generateKeyFromPassword(password, salt);
+
+// Encoding support
+String base64Encrypted = AESUtil.encryptToBase64("Hello World", key);
+String decrypted = AESUtil.decryptFromBase64(base64Encrypted, key);
+```
+
 ### **Advanced Usage**
 
 ```java
@@ -277,6 +319,7 @@ mvn javadoc:javadoc
 - **`KeccakUtil`**: Keccak family hash utilities (Keccak-224, Keccak-256, Keccak-288, Keccak-384, Keccak-512)
 - **`RIPEMDUtil`**: RIPEMD family hash utilities (RIPEMD-128, RIPEMD-160, RIPEMD-256, RIPEMD-320)
 - **`BLAKEUtil`**: BLAKE family hash utilities (BLAKE2b-256, BLAKE2b-512, BLAKE2s-128, BLAKE2s-256)
+- **`AESUtil`**: AES encryption utilities (AES-128/192/256, ECB, CBC, CFB, OFB, CTR, GCM)
 
 ### **Encoding Support**
 
@@ -336,10 +379,10 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and versions.
 - [x] Keccak family (Keccak-224, Keccak-256, Keccak-288, Keccak-384, Keccak-512)
 - [x] RIPEMD family (RIPEMD-128, RIPEMD-160, RIPEMD-256, RIPEMD-320)
 - [x] BLAKE family (BLAKE2b-256, BLAKE2b-512, BLAKE2s-128, BLAKE2s-256)
+- [x] AES encryption (AES-128/192/256, ECB, CBC, CFB, OFB, CTR, GCM)
 
 ### **Phase 3: Encryption & Signatures** 📋
 
-- [ ] AES (128/192/256-bit, all modes)
 - [ ] DES, Triple DES, RC4
 - [ ] ECDSA (multiple curves)
 - [ ] RSA operations

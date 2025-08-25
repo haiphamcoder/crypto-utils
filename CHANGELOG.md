@@ -48,6 +48,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Comprehensive JavaDoc comments for all public methods
   - Note: BLAKE3 and HMAC variants not available in BouncyCastle
 - In-depth BLAKE technical documentation under `docs/BLAKE-Technical-Documentation.md`
+- AES encryption utilities (`AESUtil`) with support for:
+  - AES-128/192/256 key sizes
+  - Multiple modes of operation (ECB, CBC, CFB, OFB, CTR, GCM)
+  - Various padding schemes (NoPadding, PKCS5, PKCS7)
+  - File encryption/decryption capabilities
+  - Password-based key derivation (PBKDF2)
+  - Custom input/output encoding support
+  - Comprehensive JavaDoc comments for all public methods
+- In-depth AES technical documentation under `docs/AES-Technical-Documentation.md`
 - Initial project structure
 - Maven configuration
 - Comprehensive CRC (Cyclic Redundancy Check) implementation
