@@ -27,6 +27,7 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 - See in-depth BLAKE overview in [docs/BLAKE-Technical-Documentation.md](docs/BLAKE-Technical-Documentation.md)
 - See in-depth AES overview in [docs/AES-Technical-Documentation.md](docs/AES-Technical-Documentation.md)
 - See in-depth DES, Triple DES, and RC4 overview in [docs/DES-TripleDES-RC4-Technical-Documentation.md](docs/DES-TripleDES-RC4-Technical-Documentation.md)
+- See in-depth ECDSA overview in [docs/ECDSA-Technical-Documentation.md](docs/ECDSA-Technical-Documentation.md)
 
 ### **MD Family Hash Functions**
 
@@ -318,6 +319,49 @@ RC4Util.decryptFile(encryptedFile, decryptedFile, key);
 // Encoding support
 String base64Encrypted = RC4Util.encryptToBase64("Hello World", key);
 String decrypted = RC4Util.decryptFromBase64(base64Encrypted, key);
+```
+
+### **ECDSA Digital Signatures**
+
+**Features:**
+
+- Support for multiple elliptic curves (secp256r1, secp384r1, secp521r1, secp256k1)
+- Signature generation and verification for data and files
+- Multiple hash algorithms (SHA-256, SHA-384, SHA-512)
+- Custom input/output encodings (HEX, Base64, Base64-URL)
+
+**Usage Examples:**
+
+```java
+import com.haiphamcoder.crypto.signature.ECDSAUtil;
+import java.security.KeyPair;
+
+// Generate key pair
+KeyPair keyPair = ECDSAUtil.generateKeyPair(); // Default: secp256r1
+KeyPair keyPair384 = ECDSAUtil.generateKeyPair(ECDSAUtil.CURVE_SECP384R1);
+KeyPair keyPair521 = ECDSAUtil.generateKeyPair(ECDSAUtil.CURVE_SECP521R1);
+
+// Basic signing and verification
+byte[] signature = ECDSAUtil.sign("Hello World", keyPair.getPrivate());
+boolean isValid = ECDSAUtil.verify("Hello World", signature, keyPair.getPublic());
+
+// File signing and verification
+byte[] fileSignature = ECDSAUtil.signFile(inputFile, keyPair.getPrivate());
+boolean isValid = ECDSAUtil.verifyFile(inputFile, fileSignature, keyPair.getPublic());
+
+// Different hash algorithms
+byte[] sig256 = ECDSAUtil.sign(data, privateKey, ECDSAUtil.SIG_SHA256_ECDSA);
+byte[] sig384 = ECDSAUtil.sign(data, privateKey, ECDSAUtil.SIG_SHA384_ECDSA);
+byte[] sig512 = ECDSAUtil.sign(data, privateKey, ECDSAUtil.SIG_SHA512_ECDSA);
+
+// Encoding support
+String base64Sig = ECDSAUtil.signToBase64("Hello World", privateKey);
+String hexSig = ECDSAUtil.signToHex("Hello World", privateKey);
+
+// Verify encoded signatures
+boolean isValid = ECDSAUtil.verifyFromBase64("Hello World", base64Sig, publicKey);
+boolean isValid = ECDSAUtil.verifyFromHex("Hello World", hexSig, publicKey);
+```
 
 ### **Advanced Usage**
 
@@ -375,6 +419,7 @@ mvn javadoc:javadoc
 - **`AESUtil`**: AES encryption utilities (AES-128/192/256, ECB, CBC, CFB, OFB, CTR, GCM)
 - **`DESUtil`**: DES and Triple DES encryption utilities (ECB, CBC, CFB, OFB modes)
 - **`RC4Util`**: RC4 stream cipher utilities (variable key sizes)
+- **`ECDSAUtil`**: ECDSA digital signature utilities (multiple curves, SHA variants)
 
 ### **Encoding Support**
 
@@ -439,7 +484,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and versions.
 ### **Phase 3: Encryption & Signatures** 📋
 
 - [x] DES, Triple DES, RC4 (Legacy algorithms with security warnings)
-- [ ] ECDSA (multiple curves)
+- [x] ECDSA (multiple curves)
 - [ ] RSA operations
 
 ### **Phase 4: Data Processing** 📋

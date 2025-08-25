@@ -73,6 +73,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Comprehensive JavaDoc comments for all public methods
 - In-depth technical documentation for DES, Triple DES, and RC4 under `docs/DES-TripleDES-RC4-Technical-Documentation.md`
 - Security warnings and deprecation notices for legacy algorithms
+- ECDSA (Elliptic Curve Digital Signature Algorithm) utilities with support for:
+  - Multiple elliptic curves (secp256r1, secp384r1, secp521r1, secp256k1)
+  - Signature generation and verification for data and files
+  - Custom input/output encodings (HEX, Base64, Base64-URL)
+  - Multiple hash algorithms (SHA-256, SHA-384, SHA-512)
+  - Comprehensive JavaDoc documentation for all public methods
+- In-depth technical documentation for ECDSA under `docs/ECDSA-Technical-Documentation.md`
 - Initial project structure
 - Maven configuration
 - Comprehensive CRC (Cyclic Redundancy Check) implementation
