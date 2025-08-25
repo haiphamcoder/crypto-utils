@@ -367,6 +367,7 @@ boolean isValid = ECDSAUtil.verifyFromHex("Hello World", hexSig, publicKey);
 ### **RSA Encryption and Digital Signatures**
 
 **Features:**
+
 - Support for multiple key sizes (2048, 3072, 4096 bits)
 - Encryption/decryption and digital signatures
 - Multiple padding schemes (PKCS1, OAEP-SHA1, OAEP-SHA256)
@@ -375,6 +376,7 @@ boolean isValid = ECDSAUtil.verifyFromHex("Hello World", hexSig, publicKey);
 - File operations and custom input/output encodings
 
 **Usage Examples:**
+
 ```java
 import com.haiphamcoder.crypto.signature.RSAUtil;
 import java.security.KeyPair;
@@ -417,6 +419,43 @@ String hexSig = RSAUtil.signToHex("Hello World", privateKey);
 
 boolean isValid = RSAUtil.verifyFromBase64("Hello World", base64Sig, publicKey);
 boolean isValid = RSAUtil.verifyFromHex("Hello World", hexSig, publicKey);
+```
+
+### **Text Case Conversion Utilities**
+
+**Features:**
+
+- Support for 12 case conversion formats
+- Unicode-aware word splitting with number separation
+- Case format detection and validation
+- Conversion between different case formats
+- Comprehensive JavaDoc documentation
+
+**Usage Examples:**
+
+```java
+import com.haiphamcoder.crypto.text.TextCaseUtil;
+import com.haiphamcoder.crypto.text.TextCaseUtil.CaseFormat;
+
+// Basic case conversions
+String snakeCase = TextCaseUtil.toSnakeCase("helloWorldExample");
+String kebabCase = TextCaseUtil.toKebabCase("Hello World Example");
+String camelCase = TextCaseUtil.toCamelCase("hello_world_example");
+String pascalCase = TextCaseUtil.toPascalCase("hello world example");
+
+// Advanced conversions
+String constantCase = TextCaseUtil.toConstantCase("hello world example");
+String dotCase = TextCaseUtil.toDotCase("HelloWorldExample");
+String titleCase = TextCaseUtil.toTitleCase("hello world example");
+String trainCase = TextCaseUtil.toTrainCase("hello world example");
+
+// Case detection
+CaseFormat detected = TextCaseUtil.detectCase("helloWorld");
+boolean isCamelCase = TextCaseUtil.isCase("helloWorld", CaseFormat.CAMEL_CASE);
+
+// Convert between formats
+String converted = TextCaseUtil.convertCase("hello_world", 
+    CaseFormat.SNAKE_CASE, CaseFormat.CAMEL_CASE);
 ```
 
 ### **Advanced Usage**
@@ -477,11 +516,28 @@ mvn javadoc:javadoc
 - **`RC4Util`**: RC4 stream cipher utilities (variable key sizes)
 - **`ECDSAUtil`**: ECDSA digital signature utilities (multiple curves, SHA variants)
 - **`RSAUtil`**: RSA encryption and digital signature utilities (multiple key sizes, padding schemes)
+- **`TextCaseUtil`**: Text case conversion utilities (12 formats, unicode-aware splitting)
 
 ### **Encoding Support**
 
 - **`InputEncoding`**: Supported input formats
 - **`OutputEncoding`**: Available output formats
+
+## 📖 Technical Documentation
+
+For in-depth technical information about each algorithm and implementation:
+
+- **[CRC Technical Documentation](docs/CRC-Technical-Documentation.md)** - Cyclic Redundancy Check algorithms
+- **[MD Technical Documentation](docs/MD-Technical-Documentation.md)** - Message Digest family (MD2, MD4, MD5)
+- **[SHA and HMAC Technical Documentation](docs/SHA-and-HMAC-Technical-Documentation.md)** - Secure Hash Algorithms and HMAC
+- **[Keccak Technical Documentation](docs/Keccak-Technical-Documentation.md)** - Keccak family hash functions
+- **[RIPEMD Technical Documentation](docs/RIPEMD-Technical-Documentation.md)** - RIPEMD family hash functions
+- **[BLAKE Technical Documentation](docs/BLAKE-Technical-Documentation.md)** - BLAKE family hash functions
+- **[AES Technical Documentation](docs/AES-Technical-Documentation.md)** - Advanced Encryption Standard
+- **[DES, Triple DES, RC4 Technical Documentation](docs/DES-TripleDES-RC4-Technical-Documentation.md)** - Legacy encryption algorithms
+- **[ECDSA Technical Documentation](docs/ECDSA-Technical-Documentation.md)** - Elliptic Curve Digital Signature Algorithm
+- **[RSA Technical Documentation](docs/RSA-Technical-Documentation.md)** - Rivest-Shamir-Adleman algorithm
+- **[Text Case Conversion Technical Documentation](docs/Text-Case-Conversion-Technical-Documentation.md)** - Text case conversion utilities
 
 ## 🧪 Testing
 
@@ -547,7 +603,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and versions.
 ### **Phase 4: Data Processing** 📋
 
 - [ ] JSON/XML validation and formatting
-- [ ] Text case conversion utilities
+- [x] Text case conversion utilities
 - [ ] Character encoding support
 - [ ] File processing utilities
 

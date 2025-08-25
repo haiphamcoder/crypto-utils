@@ -89,6 +89,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - File operations and custom input/output encodings
   - Comprehensive JavaDoc documentation for all public methods
 - In-depth technical documentation for RSA under `docs/RSA-Technical-Documentation.md`
+- Text Case Conversion utilities (`TextCaseUtil`) with support for:
+  - 12 case conversion formats (lowercase, UPPERCASE, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, dot.case, space case, SCREAMING_SNAKE_CASE, Train-Case, Title Case)
+  - Unicode-aware word splitting with number separation
+  - Case format detection and validation
+  - Conversion between different case formats
+  - Comprehensive JavaDoc documentation for all public methods
+- In-depth technical documentation for Text Case Conversion under `docs/Text-Case-Conversion-Technical-Documentation.md`
 - Initial project structure
 - Maven configuration
 - Comprehensive CRC (Cyclic Redundancy Check) implementation
