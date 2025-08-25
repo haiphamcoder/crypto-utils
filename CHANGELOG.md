@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Short alias methods in `CRCUtil` for common presets:
+  - `crc7`, `crc8`, `crc16`, `crc32`, `crc64` (with overloads and formatted variants)
+- In-depth CRC technical documentation under `docs/CRC-Technical-Documentation.md`
+- Unit tests covering the new short alias methods
 - Initial project structure
 - Maven configuration
 - Comprehensive CRC (Cyclic Redundancy Check) implementation

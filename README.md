@@ -10,18 +10,25 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 ## 🚀 Features
 
 ### **CRC (Cyclic Redundancy Check) Engine**
+
 - **Multi-width Support**: CRC algorithms from 1 to 64 bits
 - **Algorithm Presets**: 9 standard CRC implementations
 - **Processing Methods**: Table-driven and bitwise computation
 - **File Support**: Streaming file processing with configurable buffers
 - **Thread Safety**: All methods are static and thread-safe
 
+#### Documentation
+
+- See in-depth CRC overview in [docs/CRC-Technical-Documentation.md](docs/CRC-Technical-Documentation.md)
+
 ### **Input/Output Encoding**
+
 - **Input Formats**: HEX, Base64, Base64-URL, UTF-8, UTF-16, ISO-8859-1, Windows-1252
 - **Output Formats**: HEX (lowercase/uppercase), Base64, Base64-URL
 - **Automatic Conversion**: Seamless encoding/decoding for CRC operations
 
 ### **CRC Algorithm Standards**
+
 | Algorithm | Width | Use Case | Polynomial |
 |-----------|-------|----------|------------|
 | CRC-7/MMC | 7 | MultiMediaCard | 0x09 |
@@ -37,6 +44,7 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 ## 📖 Quick Start
 
 ### **Maven Dependency**
+
 ```xml
 <dependency>
     <groupId>com.haiphamcoder</groupId>
@@ -46,21 +54,23 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 ```
 
 ### **Basic CRC Usage**
+
 ```java
 import com.haiphamcoder.crypto.hash.crc.CRCUtil;
 
 // Simple CRC computation
-long crc16 = CRCUtil.crc16Arc("Hello World");
+long crc16 = CRCUtil.crc16("Hello World"); // short alias
 
-// CRC with custom encoding
-String hexOut = CRCUtil.crc16Arc("313233343536373839", 
+// CRC with custom encoding (short alias)
+String hexOut = CRCUtil.crc16("313233343536373839", 
     InputEncoding.HEX, OutputEncoding.HEX_LOWER);
 
-// File CRC computation
-long fileCrc = CRCUtil.crc32IsoHdlc(new File("data.txt"));
+// File CRC computation (short alias)
+long fileCrc = CRCUtil.crc32(new File("data.txt"));
 ```
 
 ### **Advanced Usage**
+
 ```java
 import com.haiphamcoder.crypto.hash.crc.CRC;
 import com.haiphamcoder.crypto.hash.crc.CRCParameters;
@@ -81,10 +91,12 @@ long crc = CRC.compute("Custom data".getBytes(), params);
 ## 🛠️ Installation & Build
 
 ### **Prerequisites**
+
 - Java 8 or higher
 - Maven 3.6 or higher
 
 ### **Build Commands**
+
 ```bash
 # Compile and test
 mvn clean test
@@ -99,6 +111,7 @@ mvn javadoc:javadoc
 ## 📚 API Documentation
 
 ### **Core Classes**
+
 - **`CRC`**: Low-level CRC computation engine
 - **`CRCParameters`**: CRC algorithm configuration
 - **`CRCPresets`**: Predefined CRC standards
@@ -106,12 +119,14 @@ mvn javadoc:javadoc
 - **`EncodingUtil`**: Input/output encoding utilities
 
 ### **Encoding Support**
+
 - **`InputEncoding`**: Supported input formats
 - **`OutputEncoding`**: Available output formats
 
 ## 🧪 Testing
 
 The library includes comprehensive unit tests with standard CRC test vectors:
+
 ```bash
 mvn test
 ```
@@ -149,11 +164,13 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and versions.
 ## 🎯 Roadmap
 
 ### **Phase 1: Hash Functions** ✅
+
 - [x] CRC algorithms (1-64 bits)
 - [x] Input/Output encoding support
 - [x] File processing capabilities
 
 ### **Phase 2: Cryptographic Functions** 🚧
+
 - [ ] SHA family (SHA-1, SHA-2, SHA-3)
 - [ ] MD family (MD-2, MD-4, MD-5)
 - [ ] Keccak, SHAKE, cSHAKE, KMAC
@@ -161,12 +178,14 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and versions.
 - [ ] BLAKE family
 
 ### **Phase 3: Encryption & Signatures** 📋
+
 - [ ] AES (128/192/256-bit, all modes)
 - [ ] DES, Triple DES, RC4
 - [ ] ECDSA (multiple curves)
 - [ ] RSA operations
 
 ### **Phase 4: Data Processing** 📋
+
 - [ ] JSON/XML validation and formatting
 - [ ] Text case conversion utilities
 - [ ] Character encoding support

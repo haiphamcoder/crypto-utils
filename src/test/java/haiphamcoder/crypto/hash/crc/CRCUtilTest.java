@@ -108,4 +108,42 @@ class CRCUtilTest {
         long crc = CRCUtil.crc64Ecma182(ABC);
         assertEquals(0x6C40DF5F0B497347L, crc);
     }
+
+    // ===== Short alias method tests =====
+
+    @Test
+    void testShortAlias_crc7() {
+        long crc = CRCUtil.crc7(ABC);
+        assertEquals(0x75, crc);
+    }
+
+    @Test
+    void testShortAlias_crc8() {
+        long crc = CRCUtil.crc8(ABC);
+        assertEquals(0xF4, crc);
+    }
+
+    @Test
+    void testShortAlias_crc16() {
+        long crc = CRCUtil.crc16(ABC);
+        assertEquals(0xBB3D, crc);
+    }
+
+    @Test
+    void testShortAlias_crc32() {
+        long crc = CRCUtil.crc32(ABC);
+        assertEquals(0xCBF43926L, crc);
+    }
+
+    @Test
+    void testShortAlias_crc64() {
+        long crc = CRCUtil.crc64(ABC);
+        assertEquals(0x6C40DF5F0B497347L, crc);
+    }
+
+    @Test
+    void testShortAliasFormatted_crc16_hex() {
+        String out = CRCUtil.crc16("313233343536373839", InputEncoding.HEX, OutputEncoding.HEX_LOWER);
+        assertEquals("bb3d", out);
+    }
 }
