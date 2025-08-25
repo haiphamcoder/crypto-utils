@@ -13,6 +13,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `crc7`, `crc8`, `crc16`, `crc32`, `crc64` (with overloads and formatted variants)
 - In-depth CRC technical documentation under `docs/CRC-Technical-Documentation.md`
 - Unit tests covering the new short alias methods
+- MD family utilities (`MDUtil`) with support for:
+  - MD2, MD4 (BouncyCastle), MD5 algorithms
+  - File processing variants for all algorithms
+  - Custom input/output encoding support (HEX, Base64, UTF-8, etc.)
+  - HMAC-MD5 with encoding flexibility
+- BouncyCastle provider dependency for MD4 support
+- In-depth MD technical documentation under `docs/MD-Technical-Documentation.md`
+- JavaDoc comments added for `MDUtil` public APIs
 - Initial project structure
 - Maven configuration
 - Comprehensive CRC (Cyclic Redundancy Check) implementation

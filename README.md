@@ -20,6 +20,15 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 #### Documentation
 
 - See in-depth CRC overview in [docs/CRC-Technical-Documentation.md](docs/CRC-Technical-Documentation.md)
+- See in-depth MD overview in [docs/MD-Technical-Documentation.md](docs/MD-Technical-Documentation.md)
+
+### **MD Family Hash Functions**
+
+- **MD2, MD4, MD5**: Standard message digest algorithms
+- **File Processing**: Support for computing hashes of files
+- **Encoding Flexibility**: Custom input/output encodings (HEX, Base64, UTF-8, etc.)
+- **HMAC Support**: HMAC-MD5 for message authentication
+- **BouncyCastle Integration**: MD4 support via BouncyCastle provider
 
 ### **Input/Output Encoding**
 
@@ -69,6 +78,27 @@ String hexOut = CRCUtil.crc16("313233343536373839",
 long fileCrc = CRCUtil.crc32(new File("data.txt"));
 ```
 
+### **MD Family Usage**
+
+```java
+import com.haiphamcoder.crypto.hash.md.MDUtil;
+
+// Basic MD5 computation
+byte[] md5Hash = MDUtil.md5("Hello World");
+String md5Hex = MDUtil.md5Hex("Hello World");
+
+// MD5 with custom encoding
+String base64Hash = MDUtil.md5("Hello World", InputEncoding.UTF8, OutputEncoding.BASE64);
+
+// File MD5
+String fileMd5 = MDUtil.md5Hex(new File("data.txt"));
+
+// HMAC-MD5
+byte[] hmac = MDUtil.hmacMd5("Hello World", "secret");
+String hmacHex = MDUtil.hmacMd5("Hello World", "secret", 
+    InputEncoding.UTF8, InputEncoding.UTF8, OutputEncoding.HEX_LOWER);
+```
+
 ### **Advanced Usage**
 
 ```java
@@ -116,6 +146,7 @@ mvn javadoc:javadoc
 - **`CRCParameters`**: CRC algorithm configuration
 - **`CRCPresets`**: Predefined CRC standards
 - **`CRCUtil`**: High-level utility methods
+- **`MDUtil`**: MD family hash utilities (MD2, MD4, MD5, HMAC)
 - **`EncodingUtil`**: Input/output encoding utilities
 
 ### **Encoding Support**
@@ -169,10 +200,10 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and versions.
 - [x] Input/Output encoding support
 - [x] File processing capabilities
 
-### **Phase 2: Cryptographic Functions** 🚧
+### **Phase 2: Cryptographic Functions** ✅
 
+- [x] MD family (MD-2, MD-4, MD-5) with HMAC support
 - [ ] SHA family (SHA-1, SHA-2, SHA-3)
-- [ ] MD family (MD-2, MD-4, MD-5)
 - [ ] Keccak, SHAKE, cSHAKE, KMAC
 - [ ] RIPEMD family
 - [ ] BLAKE family
