@@ -22,6 +22,7 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 - See in-depth CRC overview in [docs/CRC-Technical-Documentation.md](docs/CRC-Technical-Documentation.md)
 - See in-depth MD overview in [docs/MD-Technical-Documentation.md](docs/MD-Technical-Documentation.md)
 - See in-depth SHA and HMAC overview in [docs/SHA-and-HMAC-Technical-Documentation.md](docs/SHA-and-HMAC-Technical-Documentation.md)
+- See in-depth Keccak overview in [docs/Keccak-Technical-Documentation.md](docs/Keccak-Technical-Documentation.md)
 
 ### **MD Family Hash Functions**
 
@@ -38,6 +39,14 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 - **Encoding Flexibility**: Custom input/output encodings (HEX, Base64, UTF-8, etc.)
 - **HMAC Support**: HMAC-SHA1/256/384/512 for message authentication
 - **Industry Standard**: Widely used in TLS/SSL, digital signatures, and security protocols
+
+### **Keccak Family Hash Functions**
+
+- **Keccak-224, Keccak-256, Keccak-288, Keccak-384, Keccak-512**: SHA-3 standard algorithms
+- **File Processing**: Support for computing hashes of files
+- **Encoding Flexibility**: Custom input/output encodings (HEX, Base64, UTF-8, etc.)
+- **Sponge Construction**: Based on sponge function paradigm (different from Merkle-Damgård)
+- **Cryptocurrency Support**: Used in Ethereum and other blockchain applications
 
 ### **Input/Output Encoding**
 
@@ -129,6 +138,26 @@ String hmacHex = SHAUtil.hmacSha256("Hello World", "secret",
     InputEncoding.UTF8, InputEncoding.UTF8, OutputEncoding.HEX_LOWER);
 ```
 
+### **Keccak Family Usage**
+
+```java
+import com.haiphamcoder.crypto.hash.keccak.KeccakUtil;
+
+// Basic Keccak-256 computation
+byte[] keccak256Hash = KeccakUtil.keccak256("Hello World");
+String keccak256Hex = KeccakUtil.keccak256Hex("Hello World");
+
+// Keccak-256 with custom encoding
+String base64Hash = KeccakUtil.keccak256("Hello World", InputEncoding.UTF8, OutputEncoding.BASE64);
+
+// File Keccak-256
+String fileKeccak256 = KeccakUtil.keccak256Hex(new File("data.txt"));
+
+// Other Keccak variants
+String keccak384 = KeccakUtil.keccak384Hex("Hello World");
+String keccak512 = KeccakUtil.keccak512Hex("Hello World");
+```
+
 ### **Advanced Usage**
 
 ```java
@@ -179,6 +208,7 @@ mvn javadoc:javadoc
 - **`MDUtil`**: MD family hash utilities (MD2, MD4, MD5, HMAC)
 - **`SHAUtil`**: SHA family hash utilities (SHA-1, SHA-256, SHA-384, SHA-512, HMAC)
 - **`EncodingUtil`**: Input/output encoding utilities
+- **`KeccakUtil`**: Keccak family hash utilities (Keccak-224, Keccak-256, Keccak-288, Keccak-384, Keccak-512)
 
 ### **Encoding Support**
 
@@ -235,7 +265,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and versions.
 
 - [x] MD family (MD-2, MD-4, MD-5) with HMAC support
 - [x] SHA family (SHA-1, SHA-2, SHA-3) with HMAC support
-- [ ] Keccak, SHAKE, cSHAKE, KMAC
+- [x] Keccak family (Keccak-224, Keccak-256, Keccak-288, Keccak-384, Keccak-512)
 - [ ] RIPEMD family
 - [ ] BLAKE family
 

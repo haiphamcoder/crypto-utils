@@ -28,6 +28,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - HMAC-SHA1/256/384/512 with encoding flexibility
 - In-depth SHA and HMAC technical documentation under `docs/SHA-and-HMAC-Technical-Documentation.md`
 - JavaDoc comments added for `SHAUtil` public APIs
+- Keccak family utilities (`KeccakUtil`) with support for:
+  - Keccak-224, Keccak-256, Keccak-288, Keccak-384, Keccak-512 algorithms
+  - File processing variants for all algorithms
+  - Custom input/output encoding support (HEX, Base64, UTF-8, etc.)
+  - Comprehensive JavaDoc comments for all public methods
+- In-depth Keccak technical documentation under `docs/Keccak-Technical-Documentation.md`
 - Initial project structure
 - Maven configuration
 - Comprehensive CRC (Cyclic Redundancy Check) implementation
