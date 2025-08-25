@@ -21,6 +21,7 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 
 - See in-depth CRC overview in [docs/CRC-Technical-Documentation.md](docs/CRC-Technical-Documentation.md)
 - See in-depth MD overview in [docs/MD-Technical-Documentation.md](docs/MD-Technical-Documentation.md)
+- See in-depth SHA and HMAC overview in [docs/SHA-and-HMAC-Technical-Documentation.md](docs/SHA-and-HMAC-Technical-Documentation.md)
 
 ### **MD Family Hash Functions**
 
@@ -29,6 +30,14 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 - **Encoding Flexibility**: Custom input/output encodings (HEX, Base64, UTF-8, etc.)
 - **HMAC Support**: HMAC-MD5 for message authentication
 - **BouncyCastle Integration**: MD4 support via BouncyCastle provider
+
+### **SHA Family Hash Functions**
+
+- **SHA-1, SHA-256, SHA-384, SHA-512**: Secure hash algorithms
+- **File Processing**: Support for computing hashes of files
+- **Encoding Flexibility**: Custom input/output encodings (HEX, Base64, UTF-8, etc.)
+- **HMAC Support**: HMAC-SHA1/256/384/512 for message authentication
+- **Industry Standard**: Widely used in TLS/SSL, digital signatures, and security protocols
 
 ### **Input/Output Encoding**
 
@@ -99,6 +108,27 @@ String hmacHex = MDUtil.hmacMd5("Hello World", "secret",
     InputEncoding.UTF8, InputEncoding.UTF8, OutputEncoding.HEX_LOWER);
 ```
 
+### **SHA Family Usage**
+
+```java
+import com.haiphamcoder.crypto.hash.sha.SHAUtil;
+
+// Basic SHA-256 computation
+byte[] sha256Hash = SHAUtil.sha256("Hello World");
+String sha256Hex = SHAUtil.sha256Hex("Hello World");
+
+// SHA-256 with custom encoding
+String base64Hash = SHAUtil.sha256("Hello World", InputEncoding.UTF8, OutputEncoding.BASE64);
+
+// File SHA-256
+String fileSha256 = SHAUtil.sha256Hex(new File("data.txt"));
+
+// HMAC-SHA256
+byte[] hmac = SHAUtil.hmacSha256("Hello World", "secret");
+String hmacHex = SHAUtil.hmacSha256("Hello World", "secret", 
+    InputEncoding.UTF8, InputEncoding.UTF8, OutputEncoding.HEX_LOWER);
+```
+
 ### **Advanced Usage**
 
 ```java
@@ -147,6 +177,7 @@ mvn javadoc:javadoc
 - **`CRCPresets`**: Predefined CRC standards
 - **`CRCUtil`**: High-level utility methods
 - **`MDUtil`**: MD family hash utilities (MD2, MD4, MD5, HMAC)
+- **`SHAUtil`**: SHA family hash utilities (SHA-1, SHA-256, SHA-384, SHA-512, HMAC)
 - **`EncodingUtil`**: Input/output encoding utilities
 
 ### **Encoding Support**
@@ -203,7 +234,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and versions.
 ### **Phase 2: Cryptographic Functions** ✅
 
 - [x] MD family (MD-2, MD-4, MD-5) with HMAC support
-- [ ] SHA family (SHA-1, SHA-2, SHA-3)
+- [x] SHA family (SHA-1, SHA-2, SHA-3) with HMAC support
 - [ ] Keccak, SHAKE, cSHAKE, KMAC
 - [ ] RIPEMD family
 - [ ] BLAKE family
