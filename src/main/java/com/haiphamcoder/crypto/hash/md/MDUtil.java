@@ -63,7 +63,7 @@ public final class MDUtil {
     /**
      * Compute MD2 digest for a string with specified charset.
      *
-     * @param s input string
+     * @param s  input string
      * @param cs charset to encode the string
      * @return 16-byte MD2 hash
      */
@@ -105,7 +105,7 @@ public final class MDUtil {
     /**
      * Compute MD2 digest for a string with charset, return lowercase-hex.
      *
-     * @param s input string
+     * @param s  input string
      * @param cs charset to encode the string
      * @return hex string of MD2 hash
      */
@@ -127,8 +127,8 @@ public final class MDUtil {
      * Compute MD2 with custom input and output encodings.
      *
      * @param input input data as string
-     * @param in input encoding (how to decode the string)
-     * @param out output encoding (HEX lower/upper, Base64, Base64-URL)
+     * @param in    input encoding (how to decode the string)
+     * @param out   output encoding (HEX lower/upper, Base64, Base64-URL)
      * @return formatted MD2 hash string
      */
     public static String md2(String input, InputEncoding in, OutputEncoding out) {
@@ -159,7 +159,7 @@ public final class MDUtil {
     /**
      * Compute MD4 digest for a string with specified charset.
      *
-     * @param s input string
+     * @param s  input string
      * @param cs charset to encode the string
      * @return 16-byte MD4 hash
      */
@@ -201,7 +201,7 @@ public final class MDUtil {
     /**
      * Compute MD4 digest for a string with charset, return lowercase-hex.
      *
-     * @param s input string
+     * @param s  input string
      * @param cs charset to encode the string
      * @return hex string of MD4 hash
      */
@@ -223,8 +223,8 @@ public final class MDUtil {
      * Compute MD4 with custom input and output encodings.
      *
      * @param input input data as string
-     * @param in input encoding (how to decode the string)
-     * @param out output encoding (HEX lower/upper, Base64, Base64-URL)
+     * @param in    input encoding (how to decode the string)
+     * @param out   output encoding (HEX lower/upper, Base64, Base64-URL)
      * @return formatted MD4 hash string
      */
     public static String md4(String input, InputEncoding in, OutputEncoding out) {
@@ -255,7 +255,7 @@ public final class MDUtil {
     /**
      * Compute MD5 digest for a string with specified charset.
      *
-     * @param s input string
+     * @param s  input string
      * @param cs charset to encode the string
      * @return 16-byte MD5 hash
      */
@@ -297,7 +297,7 @@ public final class MDUtil {
     /**
      * Compute MD5 digest for a string with charset, return lowercase-hex.
      *
-     * @param s input string
+     * @param s  input string
      * @param cs charset to encode the string
      * @return hex string of MD5 hash
      */
@@ -319,8 +319,8 @@ public final class MDUtil {
      * Compute MD5 with custom input and output encodings.
      *
      * @param input input data as string
-     * @param in input encoding (how to decode the string)
-     * @param out output encoding (HEX lower/upper, Base64, Base64-URL)
+     * @param in    input encoding (how to decode the string)
+     * @param out   output encoding (HEX lower/upper, Base64, Base64-URL)
      * @return formatted MD5 hash string
      */
     public static String md5(String input, InputEncoding in, OutputEncoding out) {
@@ -332,7 +332,7 @@ public final class MDUtil {
      * Compute HMAC-MD5 for raw bytes.
      *
      * @param data message bytes
-     * @param key secret key bytes
+     * @param key  secret key bytes
      * @return 16-byte HMAC output
      */
     public static byte[] hmacMd5(byte[] data, byte[] key) {
@@ -343,7 +343,7 @@ public final class MDUtil {
      * Compute HMAC-MD5 for UTF-8 strings.
      *
      * @param data message string (UTF-8)
-     * @param key secret key string (UTF-8)
+     * @param key  secret key string (UTF-8)
      * @return 16-byte HMAC output
      */
     public static byte[] hmacMd5(String data, String key) {
@@ -354,8 +354,8 @@ public final class MDUtil {
      * Compute HMAC-MD5 for strings with a shared charset.
      *
      * @param data message string
-     * @param key secret key string
-     * @param cs charset for both strings
+     * @param key  secret key string
+     * @param cs   charset for both strings
      * @return 16-byte HMAC output
      */
     public static byte[] hmacMd5(String data, String key, Charset cs) {
@@ -366,7 +366,7 @@ public final class MDUtil {
      * Compute HMAC-MD5 and return lowercase-hex.
      *
      * @param data message bytes
-     * @param key secret key bytes
+     * @param key  secret key bytes
      * @return hex string of HMAC-MD5
      */
     public static String hmacMd5Hex(byte[] data, byte[] key) {
@@ -377,7 +377,7 @@ public final class MDUtil {
      * Compute HMAC-MD5 for UTF-8 strings and return lowercase-hex.
      *
      * @param data message string (UTF-8)
-     * @param key secret key string (UTF-8)
+     * @param key  secret key string (UTF-8)
      * @return hex string of HMAC-MD5
      */
     public static String hmacMd5Hex(String data, String key) {
@@ -388,8 +388,8 @@ public final class MDUtil {
      * Compute HMAC-MD5 for strings with a shared charset and return lowercase-hex.
      *
      * @param data message string
-     * @param key secret key string
-     * @param cs charset for both strings
+     * @param key  secret key string
+     * @param cs   charset for both strings
      * @return hex string of HMAC-MD5
      */
     public static String hmacMd5Hex(String data, String key, Charset cs) {
@@ -399,14 +399,15 @@ public final class MDUtil {
     /**
      * Compute HMAC-MD5 with custom encodings for message and key; format output.
      *
-     * @param data message as string
-     * @param key secret key as string
+     * @param data    message as string
+     * @param key     secret key as string
      * @param dataEnc input encoding for message
-     * @param keyEnc input encoding for key
-     * @param out output encoding (HEX lower/upper, Base64, Base64-URL)
+     * @param keyEnc  input encoding for key
+     * @param out     output encoding (HEX lower/upper, Base64, Base64-URL)
      * @return formatted HMAC-MD5 string
      */
-    public static String hmacMd5(String data, String key, InputEncoding dataEnc, InputEncoding keyEnc, OutputEncoding out) {
+    public static String hmacMd5(String data, String key, InputEncoding dataEnc, InputEncoding keyEnc,
+            OutputEncoding out) {
         byte[] decodedData = EncodingUtil.decode(data, dataEnc);
         byte[] decodedKey = EncodingUtil.decode(key, keyEnc);
         return EncodingUtil.encode(hmacMd5(decodedData, decodedKey), out);
@@ -419,7 +420,8 @@ public final class MDUtil {
                     : MessageDigest.getInstance(algorithm, provider);
             return md.digest(data);
         } catch (NoSuchAlgorithmException | NoSuchProviderException e) {
-            throw new CryptoException("Digest algorithm not available: " + algorithm + (provider != null ? ("/" + provider) : ""), e);
+            throw new CryptoException(
+                    "Digest algorithm not available: " + algorithm + (provider != null ? ("/" + provider) : ""), e);
         }
     }
 
@@ -439,7 +441,8 @@ public final class MDUtil {
             }
             return md.digest();
         } catch (NoSuchAlgorithmException | NoSuchProviderException e) {
-            throw new CryptoException("Digest algorithm not available: " + algorithm + (provider != null ? ("/" + provider) : ""), e);
+            throw new CryptoException(
+                    "Digest algorithm not available: " + algorithm + (provider != null ? ("/" + provider) : ""), e);
         } catch (IOException e) {
             throw new CryptoException("I/O error while reading file: " + file.getAbsolutePath(), e);
         }
@@ -460,5 +463,3 @@ public final class MDUtil {
         return EncodingUtil.decode(input, in);
     }
 }
-
-
