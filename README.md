@@ -24,6 +24,7 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 - See in-depth SHA and HMAC overview in [docs/SHA-and-HMAC-Technical-Documentation.md](docs/SHA-and-HMAC-Technical-Documentation.md)
 - See in-depth Keccak overview in [docs/Keccak-Technical-Documentation.md](docs/Keccak-Technical-Documentation.md)
 - See in-depth RIPEMD overview in [docs/RIPEMD-Technical-Documentation.md](docs/RIPEMD-Technical-Documentation.md)
+- See in-depth BLAKE overview in [docs/BLAKE-Technical-Documentation.md](docs/BLAKE-Technical-Documentation.md)
 
 ### **MD Family Hash Functions**
 
@@ -57,6 +58,15 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 - **Dual-Path Design**: Parallel processing paths for enhanced security
 - **HMAC Support**: HMAC-RIPEMD128/160/256/320 for message authentication
 - **Cryptocurrency Support**: Used in Bitcoin address generation
+
+### **BLAKE Family Hash Functions**
+
+- **BLAKE2b-256, BLAKE2b-512, BLAKE2s-128, BLAKE2s-256**: High-performance hash algorithms
+- **File Processing**: Support for computing hashes of files
+- **Encoding Flexibility**: Custom input/output encodings (HEX, Base64, UTF-8, etc.)
+- **ChaCha-Based Design**: Based on ChaCha stream cipher for security and speed
+- **Performance Optimized**: Faster than SHA-2/SHA-3 family
+- **Cryptocurrency Support**: Used in Monero, Decred, and other altcoins
 
 ### **Input/Output Encoding**
 
@@ -193,6 +203,27 @@ String ripemd256 = RIPEMDUtil.ripemd256Hex("Hello World");
 String ripemd320 = RIPEMDUtil.ripemd320Hex("Hello World");
 ```
 
+### **BLAKE Family Usage**
+
+```java
+import com.haiphamcoder.crypto.hash.blake.BLAKEUtil;
+
+// Basic BLAKE2b-256 computation
+byte[] blake2b256Hash = BLAKEUtil.blake2b256("Hello World");
+String blake2b256Hex = BLAKEUtil.blake2b256Hex("Hello World");
+
+// BLAKE2b-256 with custom encoding
+String base64Hash = BLAKEUtil.blake2b256("Hello World", InputEncoding.UTF8, OutputEncoding.BASE64);
+
+// File BLAKE2b-256
+String fileBlake2b256 = BLAKEUtil.blake2b256Hex(new File("data.txt"));
+
+// Other BLAKE variants
+String blake2b512 = BLAKEUtil.blake2b512Hex("Hello World");
+String blake2s128 = BLAKEUtil.blake2s128Hex("Hello World");
+String blake2s256 = BLAKEUtil.blake2s256Hex("Hello World");
+```
+
 ### **Advanced Usage**
 
 ```java
@@ -245,6 +276,7 @@ mvn javadoc:javadoc
 - **`EncodingUtil`**: Input/output encoding utilities
 - **`KeccakUtil`**: Keccak family hash utilities (Keccak-224, Keccak-256, Keccak-288, Keccak-384, Keccak-512)
 - **`RIPEMDUtil`**: RIPEMD family hash utilities (RIPEMD-128, RIPEMD-160, RIPEMD-256, RIPEMD-320)
+- **`BLAKEUtil`**: BLAKE family hash utilities (BLAKE2b-256, BLAKE2b-512, BLAKE2s-128, BLAKE2s-256)
 
 ### **Encoding Support**
 
@@ -303,7 +335,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and versions.
 - [x] SHA family (SHA-1, SHA-2, SHA-3) with HMAC support
 - [x] Keccak family (Keccak-224, Keccak-256, Keccak-288, Keccak-384, Keccak-512)
 - [x] RIPEMD family (RIPEMD-128, RIPEMD-160, RIPEMD-256, RIPEMD-320)
-- [ ] BLAKE family
+- [x] BLAKE family (BLAKE2b-256, BLAKE2b-512, BLAKE2s-128, BLAKE2s-256)
 
 ### **Phase 3: Encryption & Signatures** 📋
 

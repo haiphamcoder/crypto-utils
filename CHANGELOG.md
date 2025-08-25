@@ -41,6 +41,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - HMAC-RIPEMD128/160/256/320 with encoding flexibility
   - Comprehensive JavaDoc comments for all public methods
 - In-depth RIPEMD technical documentation under `docs/RIPEMD-Technical-Documentation.md`
+- BLAKE family utilities (`BLAKEUtil`) with support for:
+  - BLAKE2b-256, BLAKE2b-512, BLAKE2s-128, BLAKE2s-256 algorithms
+  - File processing variants for all algorithms
+  - Custom input/output encoding support (HEX, Base64, UTF-8, etc.)
+  - Comprehensive JavaDoc comments for all public methods
+  - Note: BLAKE3 and HMAC variants not available in BouncyCastle
+- In-depth BLAKE technical documentation under `docs/BLAKE-Technical-Documentation.md`
 - Initial project structure
 - Maven configuration
 - Comprehensive CRC (Cyclic Redundancy Check) implementation
