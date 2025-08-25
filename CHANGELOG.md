@@ -80,6 +80,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Multiple hash algorithms (SHA-256, SHA-384, SHA-512)
   - Comprehensive JavaDoc documentation for all public methods
 - In-depth technical documentation for ECDSA under `docs/ECDSA-Technical-Documentation.md`
+- RSA (Rivest-Shamir-Adleman) utilities with support for:
+  - Multiple key sizes (2048, 3072, 4096 bits)
+  - Encryption/decryption and digital signatures
+  - Multiple padding schemes (PKCS1, OAEP-SHA1, OAEP-SHA256)
+  - Multiple hash algorithms (SHA-1, SHA-256, SHA-384, SHA-512)
+  - Key import/export in Base64 format
+  - File operations and custom input/output encodings
+  - Comprehensive JavaDoc documentation for all public methods
+- In-depth technical documentation for RSA under `docs/RSA-Technical-Documentation.md`
 - Initial project structure
 - Maven configuration
 - Comprehensive CRC (Cyclic Redundancy Check) implementation

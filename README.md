@@ -28,6 +28,7 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 - See in-depth AES overview in [docs/AES-Technical-Documentation.md](docs/AES-Technical-Documentation.md)
 - See in-depth DES, Triple DES, and RC4 overview in [docs/DES-TripleDES-RC4-Technical-Documentation.md](docs/DES-TripleDES-RC4-Technical-Documentation.md)
 - See in-depth ECDSA overview in [docs/ECDSA-Technical-Documentation.md](docs/ECDSA-Technical-Documentation.md)
+- See in-depth RSA overview in [docs/RSA-Technical-Documentation.md](docs/RSA-Technical-Documentation.md)
 
 ### **MD Family Hash Functions**
 
@@ -363,6 +364,61 @@ boolean isValid = ECDSAUtil.verifyFromBase64("Hello World", base64Sig, publicKey
 boolean isValid = ECDSAUtil.verifyFromHex("Hello World", hexSig, publicKey);
 ```
 
+### **RSA Encryption and Digital Signatures**
+
+**Features:**
+- Support for multiple key sizes (2048, 3072, 4096 bits)
+- Encryption/decryption and digital signatures
+- Multiple padding schemes (PKCS1, OAEP-SHA1, OAEP-SHA256)
+- Multiple hash algorithms (SHA-1, SHA-256, SHA-384, SHA-512)
+- Key import/export in Base64 format
+- File operations and custom input/output encodings
+
+**Usage Examples:**
+```java
+import com.haiphamcoder.crypto.signature.RSAUtil;
+import java.security.KeyPair;
+
+// Generate key pair
+KeyPair keyPair = RSAUtil.generateKeyPair(); // Default: 2048 bits
+KeyPair keyPair3072 = RSAUtil.generateKeyPair(RSAUtil.KEY_SIZE_3072);
+KeyPair keyPair4096 = RSAUtil.generateKeyPair(RSAUtil.KEY_SIZE_4096);
+
+// Basic encryption and decryption
+byte[] encrypted = RSAUtil.encrypt("Hello World", keyPair.getPublic());
+String decrypted = RSAUtil.decryptString(encrypted, keyPair.getPrivate());
+
+// Digital signatures
+byte[] signature = RSAUtil.sign("Hello World", keyPair.getPrivate());
+boolean isValid = RSAUtil.verify("Hello World", signature, keyPair.getPublic());
+
+// Different padding schemes
+byte[] encryptedPKCS1 = RSAUtil.encrypt(data, publicKey, RSAUtil.PADDING_PKCS1);
+byte[] encryptedOAEP = RSAUtil.encrypt(data, publicKey, RSAUtil.PADDING_OAEP_SHA256);
+
+// Different hash algorithms
+byte[] sig256 = RSAUtil.sign(data, privateKey, RSAUtil.SIG_SHA256_RSA);
+byte[] sig384 = RSAUtil.sign(data, privateKey, RSAUtil.SIG_SHA384_RSA);
+
+// File operations
+byte[] encryptedFile = RSAUtil.encryptFile(inputFile, publicKey);
+byte[] decryptedFile = RSAUtil.decryptFile(encryptedFile, privateKey);
+
+// Key import/export
+String exportedPrivateKey = RSAUtil.exportPrivateKey(privateKey);
+String exportedPublicKey = RSAUtil.exportPublicKey(publicKey);
+
+PrivateKey importedPrivateKey = RSAUtil.importPrivateKey(exportedPrivateKey);
+PublicKey importedPublicKey = RSAUtil.importPublicKey(exportedPublicKey);
+
+// Encoding support
+String base64Sig = RSAUtil.signToBase64("Hello World", privateKey);
+String hexSig = RSAUtil.signToHex("Hello World", privateKey);
+
+boolean isValid = RSAUtil.verifyFromBase64("Hello World", base64Sig, publicKey);
+boolean isValid = RSAUtil.verifyFromHex("Hello World", hexSig, publicKey);
+```
+
 ### **Advanced Usage**
 
 ```java
@@ -420,6 +476,7 @@ mvn javadoc:javadoc
 - **`DESUtil`**: DES and Triple DES encryption utilities (ECB, CBC, CFB, OFB modes)
 - **`RC4Util`**: RC4 stream cipher utilities (variable key sizes)
 - **`ECDSAUtil`**: ECDSA digital signature utilities (multiple curves, SHA variants)
+- **`RSAUtil`**: RSA encryption and digital signature utilities (multiple key sizes, padding schemes)
 
 ### **Encoding Support**
 
@@ -485,7 +542,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and versions.
 
 - [x] DES, Triple DES, RC4 (Legacy algorithms with security warnings)
 - [x] ECDSA (multiple curves)
-- [ ] RSA operations
+- [x] RSA operations
 
 ### **Phase 4: Data Processing** 📋
 
