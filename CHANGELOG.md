@@ -21,6 +21,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - BouncyCastle provider dependency for MD4 support
 - In-depth MD technical documentation under `docs/MD-Technical-Documentation.md`
 - JavaDoc comments added for `MDUtil` public APIs
+- SHA family utilities (`SHAUtil`) with support for:
+  - SHA-1, SHA-256, SHA-384, SHA-512 algorithms
+  - File processing variants for all algorithms
+  - Custom input/output encoding support (HEX, Base64, UTF-8, etc.)
+  - HMAC-SHA1/256/384/512 with encoding flexibility
+- In-depth SHA and HMAC technical documentation under `docs/SHA-and-HMAC-Technical-Documentation.md`
+- JavaDoc comments added for `SHAUtil` public APIs
 - Initial project structure
 - Maven configuration
 - Comprehensive CRC (Cyclic Redundancy Check) implementation
