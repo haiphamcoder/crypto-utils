@@ -44,16 +44,19 @@ BLAKE uses the ChaCha stream cipher as its core building block:
 ### **BLAKE2b (Big Endian)**
 
 **Design Characteristics:**
+
 - **State Size**: 64-bit words (512-bit internal state)
 - **Rounds**: 12 rounds for BLAKE2b
 - **Output Lengths**: 1-64 bytes (configurable)
 - **Performance**: Optimized for 64-bit platforms
 
 **Common Variants:**
+
 - **BLAKE2b-256**: 32-byte output, commonly used
 - **BLAKE2b-512**: 64-byte output, maximum security
 
 **Algorithm Flow:**
+
 1. **Initialization**: Set initial state with constants
 2. **Message Processing**: Process 128-byte blocks
 3. **ChaCha Rounds**: Apply 12 rounds of ChaCha transformation
@@ -63,16 +66,19 @@ BLAKE uses the ChaCha stream cipher as its core building block:
 ### **BLAKE2s (Small Endian)**
 
 **Design Characteristics:**
+
 - **State Size**: 32-bit words (256-bit internal state)
 - **Rounds**: 10 rounds for BLAKE2s
 - **Output Lengths**: 1-32 bytes (configurable)
 - **Performance**: Optimized for 32-bit platforms
 
 **Common Variants:**
+
 - **BLAKE2s-128**: 16-byte output
 - **BLAKE2s-256**: 32-byte output
 
 **Algorithm Flow:**
+
 1. **Initialization**: Set initial state with constants
 2. **Message Processing**: Process 64-byte blocks
 3. **ChaCha Rounds**: Apply 10 rounds of ChaCha transformation
@@ -102,7 +108,8 @@ Each ChaCha round consists of four operations:
 ### **State Variables**
 
 The 16-word state is organized as:
-```
+
+```text
 a  b  c  d
 e  f  g  h
 i  j  k  l
