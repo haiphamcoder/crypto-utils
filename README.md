@@ -26,6 +26,7 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 - See in-depth RIPEMD overview in [docs/RIPEMD-Technical-Documentation.md](docs/RIPEMD-Technical-Documentation.md)
 - See in-depth BLAKE overview in [docs/BLAKE-Technical-Documentation.md](docs/BLAKE-Technical-Documentation.md)
 - See in-depth AES overview in [docs/AES-Technical-Documentation.md](docs/AES-Technical-Documentation.md)
+- See in-depth DES, Triple DES, and RC4 overview in [docs/DES-TripleDES-RC4-Technical-Documentation.md](docs/DES-TripleDES-RC4-Technical-Documentation.md)
 
 ### **MD Family Hash Functions**
 
@@ -266,6 +267,58 @@ String base64Encrypted = AESUtil.encryptToBase64("Hello World", key);
 String decrypted = AESUtil.decryptFromBase64(base64Encrypted, key);
 ```
 
+### **DES and Triple DES Encryption Usage**
+
+**⚠️ Security Warning: These algorithms are deprecated and should not be used for new applications.**
+
+```java
+import com.haiphamcoder.crypto.encryption.DESUtil;
+import javax.crypto.SecretKey;
+
+// Generate keys
+SecretKey desKey = DESUtil.generateDESKey();
+SecretKey tripleDesKey = DESUtil.generateTripleDESKey();
+
+// Basic encryption/decryption
+byte[] encrypted = DESUtil.encryptDES("Hello World", desKey);
+String decrypted = DESUtil.decryptDESString(encrypted, desKey);
+
+// Triple DES
+byte[] encrypted = DESUtil.encryptTripleDES("Hello World", tripleDesKey);
+String decrypted = DESUtil.decryptTripleDESString(encrypted, tripleDesKey);
+
+// Custom mode and padding
+byte[] encrypted = DESUtil.encryptDES("Hello World", desKey,
+    DESUtil.MODE_CBC, DESUtil.PADDING_PKCS5);
+
+// File operations
+DESUtil.encryptDESFile(inputFile, encryptedFile, desKey,
+    DESUtil.MODE_CBC, DESUtil.PADDING_PKCS5);
+```
+
+### **RC4 Stream Cipher Usage**
+
+**⚠️ Security Warning: RC4 is deprecated due to severe vulnerabilities and should not be used for new applications.**
+
+```java
+import com.haiphamcoder.crypto.encryption.RC4Util;
+import javax.crypto.SecretKey;
+
+// Generate key
+SecretKey key = RC4Util.generateKey(256);
+
+// Basic encryption/decryption
+byte[] encrypted = RC4Util.encrypt("Hello World", key);
+String decrypted = RC4Util.decryptString(encrypted, key);
+
+// File operations
+RC4Util.encryptFile(inputFile, encryptedFile, key);
+RC4Util.decryptFile(encryptedFile, decryptedFile, key);
+
+// Encoding support
+String base64Encrypted = RC4Util.encryptToBase64("Hello World", key);
+String decrypted = RC4Util.decryptFromBase64(base64Encrypted, key);
+
 ### **Advanced Usage**
 
 ```java
@@ -320,6 +373,8 @@ mvn javadoc:javadoc
 - **`RIPEMDUtil`**: RIPEMD family hash utilities (RIPEMD-128, RIPEMD-160, RIPEMD-256, RIPEMD-320)
 - **`BLAKEUtil`**: BLAKE family hash utilities (BLAKE2b-256, BLAKE2b-512, BLAKE2s-128, BLAKE2s-256)
 - **`AESUtil`**: AES encryption utilities (AES-128/192/256, ECB, CBC, CFB, OFB, CTR, GCM)
+- **`DESUtil`**: DES and Triple DES encryption utilities (ECB, CBC, CFB, OFB modes)
+- **`RC4Util`**: RC4 stream cipher utilities (variable key sizes)
 
 ### **Encoding Support**
 
@@ -383,7 +438,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and versions.
 
 ### **Phase 3: Encryption & Signatures** 📋
 
-- [ ] DES, Triple DES, RC4
+- [x] DES, Triple DES, RC4 (Legacy algorithms with security warnings)
 - [ ] ECDSA (multiple curves)
 - [ ] RSA operations
 

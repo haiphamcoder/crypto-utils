@@ -57,6 +57,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Custom input/output encoding support
   - Comprehensive JavaDoc comments for all public methods
 - In-depth AES technical documentation under `docs/AES-Technical-Documentation.md`
+- DES and Triple DES encryption utilities (`DESUtil`) with support for:
+  - DES (56-bit key) and Triple DES (168-bit key) algorithms
+  - Multiple modes of operation (ECB, CBC, CFB, OFB)
+  - Various padding schemes (NoPadding, PKCS5, PKCS7)
+  - File encryption/decryption capabilities
+  - Password-based key derivation (PBKDF2)
+  - Custom input/output encoding support
+  - Comprehensive JavaDoc comments for all public methods
+- RC4 stream cipher utilities (`RC4Util`) with support for:
+  - Variable key sizes (40-256 bits)
+  - File encryption/decryption capabilities
+  - Password-based key generation (PBKDF2)
+  - Custom input/output encoding support
+  - Comprehensive JavaDoc comments for all public methods
+- In-depth technical documentation for DES, Triple DES, and RC4 under `docs/DES-TripleDES-RC4-Technical-Documentation.md`
+- Security warnings and deprecation notices for legacy algorithms
 - Initial project structure
 - Maven configuration
 - Comprehensive CRC (Cyclic Redundancy Check) implementation
