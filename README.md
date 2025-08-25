@@ -23,6 +23,7 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 - See in-depth MD overview in [docs/MD-Technical-Documentation.md](docs/MD-Technical-Documentation.md)
 - See in-depth SHA and HMAC overview in [docs/SHA-and-HMAC-Technical-Documentation.md](docs/SHA-and-HMAC-Technical-Documentation.md)
 - See in-depth Keccak overview in [docs/Keccak-Technical-Documentation.md](docs/Keccak-Technical-Documentation.md)
+- See in-depth RIPEMD overview in [docs/RIPEMD-Technical-Documentation.md](docs/RIPEMD-Technical-Documentation.md)
 
 ### **MD Family Hash Functions**
 
@@ -47,6 +48,15 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 - **Encoding Flexibility**: Custom input/output encodings (HEX, Base64, UTF-8, etc.)
 - **Sponge Construction**: Based on sponge function paradigm (different from Merkle-Damgård)
 - **Cryptocurrency Support**: Used in Ethereum and other blockchain applications
+
+### **RIPEMD Family Hash Functions**
+
+- **RIPEMD-128, RIPEMD-160, RIPEMD-256, RIPEMD-320**: European standard hash algorithms
+- **File Processing**: Support for computing hashes of files
+- **Encoding Flexibility**: Custom input/output encodings (HEX, Base64, UTF-8, etc.)
+- **Dual-Path Design**: Parallel processing paths for enhanced security
+- **HMAC Support**: HMAC-RIPEMD128/160/256/320 for message authentication
+- **Cryptocurrency Support**: Used in Bitcoin address generation
 
 ### **Input/Output Encoding**
 
@@ -158,6 +168,31 @@ String keccak384 = KeccakUtil.keccak384Hex("Hello World");
 String keccak512 = KeccakUtil.keccak512Hex("Hello World");
 ```
 
+### **RIPEMD Family Usage**
+
+```java
+import com.haiphamcoder.crypto.hash.ripemd.RIPEMDUtil;
+
+// Basic RIPEMD-160 computation
+byte[] ripemd160Hash = RIPEMDUtil.ripemd160("Hello World");
+String ripemd160Hex = RIPEMDUtil.ripemd160Hex("Hello World");
+
+// RIPEMD-160 with custom encoding
+String base64Hash = RIPEMDUtil.ripemd160("Hello World", InputEncoding.UTF8, OutputEncoding.BASE64);
+
+// File RIPEMD-160
+String fileRipemd160 = RIPEMDUtil.ripemd160Hex(new File("data.txt"));
+
+// HMAC-RIPEMD160
+byte[] hmac = RIPEMDUtil.hmacRipemd160("Hello World", "secret");
+String hmacHex = RIPEMDUtil.hmacRipemd160("Hello World", "secret", 
+    InputEncoding.UTF8, InputEncoding.UTF8, OutputEncoding.HEX_LOWER);
+
+// Other RIPEMD variants
+String ripemd256 = RIPEMDUtil.ripemd256Hex("Hello World");
+String ripemd320 = RIPEMDUtil.ripemd320Hex("Hello World");
+```
+
 ### **Advanced Usage**
 
 ```java
@@ -209,6 +244,7 @@ mvn javadoc:javadoc
 - **`SHAUtil`**: SHA family hash utilities (SHA-1, SHA-256, SHA-384, SHA-512, HMAC)
 - **`EncodingUtil`**: Input/output encoding utilities
 - **`KeccakUtil`**: Keccak family hash utilities (Keccak-224, Keccak-256, Keccak-288, Keccak-384, Keccak-512)
+- **`RIPEMDUtil`**: RIPEMD family hash utilities (RIPEMD-128, RIPEMD-160, RIPEMD-256, RIPEMD-320)
 
 ### **Encoding Support**
 
@@ -266,7 +302,7 @@ See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and versions.
 - [x] MD family (MD-2, MD-4, MD-5) with HMAC support
 - [x] SHA family (SHA-1, SHA-2, SHA-3) with HMAC support
 - [x] Keccak family (Keccak-224, Keccak-256, Keccak-288, Keccak-384, Keccak-512)
-- [ ] RIPEMD family
+- [x] RIPEMD family (RIPEMD-128, RIPEMD-160, RIPEMD-256, RIPEMD-320)
 - [ ] BLAKE family
 
 ### **Phase 3: Encryption & Signatures** 📋

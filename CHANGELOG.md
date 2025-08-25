@@ -34,6 +34,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Custom input/output encoding support (HEX, Base64, UTF-8, etc.)
   - Comprehensive JavaDoc comments for all public methods
 - In-depth Keccak technical documentation under `docs/Keccak-Technical-Documentation.md`
+- RIPEMD family utilities (`RIPEMDUtil`) with support for:
+  - RIPEMD-128, RIPEMD-160, RIPEMD-256, RIPEMD-320 algorithms
+  - File processing variants for all algorithms
+  - Custom input/output encoding support (HEX, Base64, UTF-8, etc.)
+  - HMAC-RIPEMD128/160/256/320 with encoding flexibility
+  - Comprehensive JavaDoc comments for all public methods
+- In-depth RIPEMD technical documentation under `docs/RIPEMD-Technical-Documentation.md`
 - Initial project structure
 - Maven configuration
 - Comprehensive CRC (Cyclic Redundancy Check) implementation
