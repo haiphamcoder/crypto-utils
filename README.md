@@ -107,16 +107,16 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 
 ```xml
 <dependency>
-    <groupId>com.haiphamcoder</groupId>
+    <groupId>io.github.haiphamcoder</groupId>
     <artifactId>crypto-utils</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.2</version>
 </dependency>
 ```
 
 ### **Basic CRC Usage**
 
 ```java
-import com.haiphamcoder.crypto.hash.crc.CRCUtil;
+import io.github.haiphamcoder.crypto.hash.crc.CRCUtil;
 
 // Simple CRC computation
 long crc16 = CRCUtil.crc16("Hello World"); // short alias
@@ -132,7 +132,7 @@ long fileCrc = CRCUtil.crc32(new File("data.txt"));
 ### **MD Family Usage**
 
 ```java
-import com.haiphamcoder.crypto.hash.md.MDUtil;
+import io.github.haiphamcoder.crypto.hash.md.MDUtil;
 
 // Basic MD5 computation
 byte[] md5Hash = MDUtil.md5("Hello World");
@@ -153,7 +153,7 @@ String hmacHex = MDUtil.hmacMd5("Hello World", "secret",
 ### **SHA Family Usage**
 
 ```java
-import com.haiphamcoder.crypto.hash.sha.SHAUtil;
+import io.github.haiphamcoder.crypto.hash.sha.SHAUtil;
 
 // Basic SHA-256 computation
 byte[] sha256Hash = SHAUtil.sha256("Hello World");
@@ -174,7 +174,7 @@ String hmacHex = SHAUtil.hmacSha256("Hello World", "secret",
 ### **Keccak Family Usage**
 
 ```java
-import com.haiphamcoder.crypto.hash.keccak.KeccakUtil;
+import io.github.haiphamcoder.crypto.hash.keccak.KeccakUtil;
 
 // Basic Keccak-256 computation
 byte[] keccak256Hash = KeccakUtil.keccak256("Hello World");
@@ -194,7 +194,7 @@ String keccak512 = KeccakUtil.keccak512Hex("Hello World");
 ### **RIPEMD Family Usage**
 
 ```java
-import com.haiphamcoder.crypto.hash.ripemd.RIPEMDUtil;
+import io.github.haiphamcoder.crypto.hash.ripemd.RIPEMDUtil;
 
 // Basic RIPEMD-160 computation
 byte[] ripemd160Hash = RIPEMDUtil.ripemd160("Hello World");
@@ -434,8 +434,8 @@ boolean isValid = RSAUtil.verifyFromHex("Hello World", hexSig, publicKey);
 **Usage Examples:**
 
 ```java
-import com.haiphamcoder.crypto.text.TextCaseUtil;
-import com.haiphamcoder.crypto.text.TextCaseUtil.CaseFormat;
+import io.github.haiphamcoder.crypto.text.TextCaseUtil;
+import io.github.haiphamcoder.crypto.text.TextCaseUtil.CaseFormat;
 
 // Basic case conversions
 String snakeCase = TextCaseUtil.toSnakeCase("helloWorldExample");
@@ -516,7 +516,7 @@ mvn javadoc:javadoc
 - **`RC4Util`**: RC4 stream cipher utilities (variable key sizes)
 - **`ECDSAUtil`**: ECDSA digital signature utilities (multiple curves, SHA variants)
 - **`RSAUtil`**: RSA encryption and digital signature utilities (multiple key sizes, padding schemes)
-- **`TextCaseUtil`**: Text case conversion utilities (12 formats, unicode-aware splitting)
+- **`TextCaseUtil`**: Text case conversion utilities (12 formats, unicode-aware splitting, improved word boundary detection)
 
 ### **Encoding Support**
 

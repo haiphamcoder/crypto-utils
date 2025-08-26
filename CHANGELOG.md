@@ -5,7 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.0.2] - 2025-08-26
+
+### Fixed
+
+- **TextCaseUtil**: Fixed incorrect word splitting logic that was processing character-by-character instead of word-by-word
+- **TextCaseUtil**: Improved case conversion accuracy for mixed-case inputs with proper spacing
+- **TextCaseUtil**: Fixed `toTitleCase`, `toSpaceCase`, and other case conversion methods to handle complex inputs correctly
+- **TextCaseUtil**: Enhanced `normalizeInput` method to intelligently handle different input formats without over-processing
+
+### Changed
+
+- **TextCaseUtil**: Refactored `normalizeAndSeparate` method to use improved `normalizeInput` logic
+- **TextCaseUtil**: Updated case conversion algorithms to preserve spacing appropriately for different use cases
+- **TextCaseUtil**: Improved handling of camelCase, PascalCase, and mixed-format inputs
+
+### Technical Details
+
+- Enhanced word boundary detection for better case conversion accuracy
+- Improved spacing normalization logic for consistent output formatting
+- Better handling of inputs with multiple spaces and mixed separators
+
+## [0.0.1] - 2025-08-26
 
 ### Added
 

@@ -370,4 +370,22 @@ class TextCaseUtilTest {
         
         assertEquals(original, back);
     }
+
+    @Test
+    void testUserExample() {
+        String input = "xin cHAo    caC   BAN";
+        
+        // Test all case conversions
+        // Basic methods preserve spacing, advanced methods normalize spacing
+        assertEquals("xin chao    cac   ban", TextCaseUtil.toLowerCase(input));
+        assertEquals("XIN CHAO    CAC   BAN", TextCaseUtil.toUpperCase(input));
+        assertEquals("Xin Chao Cac Ban", TextCaseUtil.toTitleCase(input));
+        assertEquals("xinChaoCacBan", TextCaseUtil.toCamelCase(input));
+        assertEquals("XinChaoCacBan", TextCaseUtil.toPascalCase(input));
+        assertEquals("xin_chao_cac_ban", TextCaseUtil.toSnakeCase(input));
+        assertEquals("xin-chao-cac-ban", TextCaseUtil.toKebabCase(input));
+        assertEquals("XIN_CHAO_CAC_BAN", TextCaseUtil.toConstantCase(input));
+        assertEquals("xin.chao.cac.ban", TextCaseUtil.toDotCase(input));
+        assertEquals("xin chao cac ban", TextCaseUtil.toSpaceCase(input));
+    }
 }

@@ -317,7 +317,9 @@ public final class TextCaseUtil {
             return text;
         }
         
-        return normalizeAndSeparate(text, " ").toLowerCase();
+        // Direct normalization to avoid space issues
+        String normalized = normalizeInput(text);
+        return normalized.toLowerCase();
     }
     
     /**
@@ -460,19 +462,60 @@ public final class TextCaseUtil {
             return text;
         }
 
-        // Fast path if already separated: just normalize separators
-        if (ALREADY_SEPARATED_PATTERN.matcher(text).matches()) {
-            return SEPARATOR_PATTERN.matcher(text).replaceAll(separator);
-        }
-
-        // Use unicode-aware splitting with number separation for robust behavior
-        java.util.List<String> words = splitWords(text, true);
+        // First, normalize the input to space-separated words
+        String normalized = normalizeInput(text);
+        
+        // Then split by spaces and join with the desired separator
+        String[] words = normalized.split("\\s+");
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < words.size(); i++) {
-            if (i > 0) result.append(separator);
-            result.append(words.get(i));
+        
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].isEmpty()) {
+                continue;
+            }
+            
+            if (i > 0) {
+                result.append(separator);
+            }
+            result.append(words[i]);
         }
+        
         return result.toString();
+    }
+    
+    /**
+     * Normalize input text to space-separated words.
+     * This handles various input formats and converts them to a standard format.
+     */
+    private static String normalizeInput(String text) {
+        if (text == null || text.isEmpty()) {
+            return text;
+        }
+        
+        String result = text.trim();
+        
+        // If the text already has spaces and looks like normal words, don't over-process it
+        if (result.matches("^[a-zA-Z0-9\\s]+$") && result.contains(" ")) {
+            // Just clean up multiple spaces
+            result = result.replaceAll("\\s+", " ");
+            return result.trim();
+        }
+        
+        // Handle existing separators by converting them to spaces first
+        result = result.replaceAll("[_\\-\\.]+", " ");
+        
+        // Handle camelCase and PascalCase by inserting spaces before capital letters
+        // But only when there's a lowercase letter followed by uppercase
+        result = result.replaceAll("([a-z])([A-Z])", "$1 $2");
+        
+        // Handle number-letter boundaries
+        result = result.replaceAll("([0-9])([A-Za-z])", "$1 $2");
+        result = result.replaceAll("([A-Za-z])([0-9])", "$1 $2");
+        
+        // Clean up multiple spaces and normalize to single spaces
+        result = result.replaceAll("\\s+", " ");
+        
+        return result.trim();
     }
     
     /**
