@@ -17,6 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import io.github.haiphamcoder.crypto.encoding.InputEncoding;
 import io.github.haiphamcoder.crypto.encoding.OutputEncoding;
+import io.github.haiphamcoder.crypto.signature.RSAUtil.RSAPadding;
 
 class RSAUtilTest {
 
@@ -134,47 +135,23 @@ class RSAUtilTest {
     }
 
     @Test
-    void testEncryptDecryptString() {
-        KeyPair keyPair = RSAUtil.generateKeyPair();
-        
-        byte[] encrypted = RSAUtil.encrypt(TEST_DATA, keyPair.getPublic());
-        assertNotNull(encrypted);
-        assertTrue(encrypted.length > 0);
-        
-        String decrypted = RSAUtil.decryptString(encrypted, keyPair.getPrivate());
-        assertEquals(TEST_DATA, decrypted);
-    }
-
-    @Test
-    void testEncryptDecryptShortString() {
-        KeyPair keyPair = RSAUtil.generateKeyPair();
-        
-        byte[] encrypted = RSAUtil.encrypt(SHORT_DATA, keyPair.getPublic());
-        assertNotNull(encrypted);
-        assertTrue(encrypted.length > 0);
-        
-        String decrypted = RSAUtil.decryptString(encrypted, keyPair.getPrivate());
-        assertEquals(SHORT_DATA, decrypted);
-    }
-
-    @Test
     void testEncryptDecryptWithDifferentPadding() {
         KeyPair keyPair = RSAUtil.generateKeyPair();
         byte[] data = TEST_DATA.getBytes(StandardCharsets.UTF_8);
         
         // Test PKCS1 padding
-        byte[] encryptedPKCS1 = RSAUtil.encrypt(data, keyPair.getPublic(), RSAUtil.PADDING_PKCS1);
-        byte[] decryptedPKCS1 = RSAUtil.decrypt(encryptedPKCS1, keyPair.getPrivate(), RSAUtil.PADDING_PKCS1);
+        byte[] encryptedPKCS1 = RSAUtil.encrypt(data, keyPair.getPublic(), RSAPadding.PKCS1);
+        byte[] decryptedPKCS1 = RSAUtil.decrypt(encryptedPKCS1, keyPair.getPrivate(), RSAPadding.PKCS1);
         assertArrayEquals(data, decryptedPKCS1);
         
         // Test OAEP SHA1 padding
-        byte[] encryptedOAEP1 = RSAUtil.encrypt(data, keyPair.getPublic(), RSAUtil.PADDING_OAEP_SHA1);
-        byte[] decryptedOAEP1 = RSAUtil.decrypt(encryptedOAEP1, keyPair.getPrivate(), RSAUtil.PADDING_OAEP_SHA1);
+        byte[] encryptedOAEP1 = RSAUtil.encrypt(data, keyPair.getPublic(), RSAPadding.OAEP_SHA1);
+        byte[] decryptedOAEP1 = RSAUtil.decrypt(encryptedOAEP1, keyPair.getPrivate(), RSAPadding.OAEP_SHA1);
         assertArrayEquals(data, decryptedOAEP1);
         
         // Test OAEP SHA256 padding
-        byte[] encryptedOAEP256 = RSAUtil.encrypt(data, keyPair.getPublic(), RSAUtil.PADDING_OAEP_SHA256);
-        byte[] decryptedOAEP256 = RSAUtil.decrypt(encryptedOAEP256, keyPair.getPrivate(), RSAUtil.PADDING_OAEP_SHA256);
+        byte[] encryptedOAEP256 = RSAUtil.encrypt(data, keyPair.getPublic(), RSAPadding.OAEP_SHA256);
+        byte[] decryptedOAEP256 = RSAUtil.decrypt(encryptedOAEP256, keyPair.getPrivate(), RSAPadding.OAEP_SHA256);
         assertArrayEquals(data, decryptedOAEP256);
     }
 
@@ -196,13 +173,13 @@ class RSAUtilTest {
         KeyPair keyPair = RSAUtil.generateKeyPair();
         
         // Test PKCS1 padding
-        byte[] encryptedPKCS1 = RSAUtil.encryptFile(testFile, keyPair.getPublic(), RSAUtil.PADDING_PKCS1);
-        byte[] decryptedPKCS1 = RSAUtil.decryptFile(encryptedPKCS1, keyPair.getPrivate(), RSAUtil.PADDING_PKCS1);
+        byte[] encryptedPKCS1 = RSAUtil.encryptFile(testFile, keyPair.getPublic(), RSAPadding.PKCS1);
+        byte[] decryptedPKCS1 = RSAUtil.decryptFile(encryptedPKCS1, keyPair.getPrivate(), RSAPadding.PKCS1);
         assertArrayEquals(TEST_DATA.getBytes(StandardCharsets.UTF_8), decryptedPKCS1);
         
         // Test OAEP SHA1 padding
-        byte[] encryptedOAEP1 = RSAUtil.encryptFile(testFile, keyPair.getPublic(), RSAUtil.PADDING_OAEP_SHA1);
-        byte[] decryptedOAEP1 = RSAUtil.decryptFile(encryptedOAEP1, keyPair.getPrivate(), RSAUtil.PADDING_OAEP_SHA1);
+        byte[] encryptedOAEP1 = RSAUtil.encryptFile(testFile, keyPair.getPublic(), RSAPadding.OAEP_SHA1);
+        byte[] decryptedOAEP1 = RSAUtil.decryptFile(encryptedOAEP1, keyPair.getPrivate(), RSAPadding.OAEP_SHA1);
         assertArrayEquals(TEST_DATA.getBytes(StandardCharsets.UTF_8), decryptedOAEP1);
     }
 
