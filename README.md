@@ -370,55 +370,43 @@ boolean isValid = ECDSAUtil.verifyFromHex("Hello World", hexSig, publicKey);
 
 - Support for multiple key sizes (2048, 3072, 4096 bits)
 - Encryption/decryption and digital signatures
-- Multiple padding schemes (PKCS1, OAEP-SHA1, OAEP-SHA256)
-- Multiple hash algorithms (SHA-1, SHA-256, SHA-384, SHA-512)
+- Strongly-typed padding enum: `RSAPadding.PKCS1`, `RSAPadding.OAEP_SHA1`, `RSAPadding.OAEP_SHA256`
+- Auto-chunking for large inputs built into byte[] APIs
 - Key import/export in Base64 format
-- File operations and custom input/output encodings
+- File operations with enum padding
 
 **Usage Examples:**
 
 ```java
 import io.github.haiphamcoder.crypto.signature.RSAUtil;
 import io.github.haiphamcoder.crypto.signature.RSAUtil.RSAPadding;
-import io.github.haiphamcoder.crypto.encoding.InputEncoding;
-import io.github.haiphamcoder.crypto.encoding.OutputEncoding;
 import java.security.KeyPair;
 
 // Generate key pair
 KeyPair keyPair = RSAUtil.generateKeyPair(); // Default: 2048 bits
 
-// Encrypt/decrypt with encodings and auto-chunking when needed
-String ciphertext = RSAUtil.encrypt(
-    "This is a very long plaintext ...",
-    keyPair.getPublic(),
-    RSAPadding.PKCS1,
-    InputEncoding.UTF8,
-    OutputEncoding.BASE64
-);
-
-String plaintext = RSAUtil.decrypt(
-    ciphertext,
-    keyPair.getPrivate(),
-    RSAPadding.PKCS1,
-    InputEncoding.BASE64,
-    OutputEncoding.UTF8
-);
+// Encrypt/decrypt (byte[] APIs) with auto-chunking when needed (PKCS1)
+byte[] plaintext = "This is a very long plaintext ...".getBytes(java.nio.charset.StandardCharsets.UTF_8);
+byte[] ciphertext = RSAUtil.encrypt(plaintext, keyPair.getPublic(), RSAPadding.PKCS1);
+byte[] decrypted = RSAUtil.decrypt(ciphertext, keyPair.getPrivate(), RSAPadding.PKCS1);
+String recovered = new String(decrypted, java.nio.charset.StandardCharsets.UTF_8);
 
 // OAEP-SHA256 variant
-String ct2 = RSAUtil.encrypt(
-    "Hello OAEP",
-    keyPair.getPublic(),
-    RSAPadding.OAEP_SHA256,
-    InputEncoding.UTF8,
-    OutputEncoding.BASE64
-);
-String pt2 = RSAUtil.decrypt(
-    ct2,
-    keyPair.getPrivate(),
-    RSAPadding.OAEP_SHA256,
-    InputEncoding.BASE64,
-    OutputEncoding.UTF8
-);
+byte[] ct2 = RSAUtil.encrypt("Hello OAEP".getBytes(java.nio.charset.StandardCharsets.UTF_8),
+                             keyPair.getPublic(), RSAPadding.OAEP_SHA256);
+byte[] pt2 = RSAUtil.decrypt(ct2, keyPair.getPrivate(), RSAPadding.OAEP_SHA256);
+
+// Default padding (PKCS1) overloads
+byte[] ctDefault = RSAUtil.encrypt(plaintext, keyPair.getPublic());
+byte[] ptDefault = RSAUtil.decrypt(ctDefault, keyPair.getPrivate());
+
+// File operations (enum padding)
+byte[] encFile = RSAUtil.encryptFile(inputFile, keyPair.getPublic(), RSAPadding.PKCS1);
+byte[] decFile = RSAUtil.decryptFile(encFile, keyPair.getPrivate(), RSAPadding.PKCS1);
+
+// Digital signatures
+byte[] signature = RSAUtil.sign("Hello World", keyPair.getPrivate());
+boolean isValid = RSAUtil.verify("Hello World", signature, keyPair.getPublic());
 ```
 
 ### **Text Case Conversion Utilities**
