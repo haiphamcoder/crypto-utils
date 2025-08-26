@@ -504,4 +504,85 @@ mvn javadoc:javadoc
 - **`RC4Util`**: RC4 stream cipher utilities (variable key sizes)
 - **`ECDSAUtil`**: ECDSA digital signature utilities (multiple curves, SHA variants)
 - **`RSAUtil`**: RSA encryption and digital signature utilities (multiple key sizes, padding schemes)
-- **`TextCaseUtil`
+- **`TextCaseUtil`**: Text case conversion utilities (12 formats, unicode-aware splitting, improved word boundary detection, camelCase/PascalCase preservation)
+
+### **Encoding Support**
+
+- **`InputEncoding`**: Supported input formats
+- **`OutputEncoding`**: Available output formats
+
+## 🧪 Testing
+
+The library includes comprehensive unit tests with standard CRC test vectors:
+
+```bash
+mvn test
+```
+
+All tests use the standard "123456789" test vector for validation.
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Add tests for new functionality
+5. Ensure all tests pass (`mvn test`)
+6. Commit your changes (`git commit -m 'Add amazing feature'`)
+7. Push to the branch (`git push origin feature/amazing-feature`)
+8. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+For support and questions:
+
+- 📝 Create an issue on GitHub
+- 📚 Check the documentation and examples
+- 🧪 Review the test cases for usage patterns
+- 💬 Join discussions in GitHub Issues
+
+## 📋 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and versions.
+
+## 🎯 Roadmap
+
+### **Phase 1: Hash Functions** ✅
+
+- [x] CRC algorithms (1-64 bits)
+- [x] Input/Output encoding support
+- [x] File processing capabilities
+
+### **Phase 2: Cryptographic Functions** ✅
+
+- [x] MD family (MD-2, MD-4, MD-5) with HMAC support
+- [x] SHA family (SHA-1, SHA-2, SHA-3) with HMAC support
+- [x] Keccak family (Keccak-224, Keccak-256, Keccak-288, Keccak-384, Keccak-512)
+- [x] RIPEMD family (RIPEMD-128, RIPEMD-160, RIPEMD-256, RIPEMD-320)
+- [x] BLAKE family (BLAKE2b-256, BLAKE2b-512, BLAKE2s-128, BLAKE2s-256)
+- [x] AES encryption (AES-128/192/256, ECB, CBC, CFB, OFB, CTR, GCM)
+
+### **Phase 3: Encryption & Signatures** 📋
+
+- [x] DES, Triple DES, RC4 (Legacy algorithms with security warnings)
+- [x] ECDSA (multiple curves)
+- [x] RSA operations
+
+### **Phase 4: Data Processing** 📋
+
+- [ ] JSON/XML validation and formatting
+- [x] Text case conversion utilities
+- [ ] Character encoding support
+- [ ] File processing utilities
+
+## ⭐ Star History
+
+If you find this library useful, please consider giving it a star on GitHub!
+
+---
+
+**Built with ❤️ by [haiphamcoder](https://github.com/haiphamcoder)**
