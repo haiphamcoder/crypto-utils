@@ -153,7 +153,6 @@
                 <version>3.1.0</version>
                 <configuration>
                     <executable>gpg2</executable>
-                    <keyname>28BB18E1</keyname>
                     <useAgent>false</useAgent>
                     <defaultKeyring>false</defaultKeyring>
                 </configuration>
@@ -168,13 +167,14 @@
                 </executions>
             </plugin>
 
-            <!-- Maven Deploy Plugin for Central Publishing Portal -->
+            <!-- Central Publishing Maven Plugin for Maven Central -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>3.1.1</version>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.8.0</version>
+                <extensions>true</extensions>
                 <configuration>
-                    <altDeploymentRepository>central::default::https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</altDeploymentRepository>
+                    <publishingServerId>central</publishingServerId>
                 </configuration>
             </plugin>
         </plugins>
