@@ -109,7 +109,7 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 <dependency>
     <groupId>io.github.haiphamcoder</groupId>
     <artifactId>crypto-utils</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
 </dependency>
 ```
 
@@ -378,47 +378,47 @@ boolean isValid = ECDSAUtil.verifyFromHex("Hello World", hexSig, publicKey);
 **Usage Examples:**
 
 ```java
-import com.haiphamcoder.crypto.signature.RSAUtil;
+import io.github.haiphamcoder.crypto.signature.RSAUtil;
+import io.github.haiphamcoder.crypto.signature.RSAUtil.RSAPadding;
+import io.github.haiphamcoder.crypto.encoding.InputEncoding;
+import io.github.haiphamcoder.crypto.encoding.OutputEncoding;
 import java.security.KeyPair;
 
 // Generate key pair
 KeyPair keyPair = RSAUtil.generateKeyPair(); // Default: 2048 bits
-KeyPair keyPair3072 = RSAUtil.generateKeyPair(RSAUtil.KEY_SIZE_3072);
-KeyPair keyPair4096 = RSAUtil.generateKeyPair(RSAUtil.KEY_SIZE_4096);
 
-// Basic encryption and decryption
-byte[] encrypted = RSAUtil.encrypt("Hello World", keyPair.getPublic());
-String decrypted = RSAUtil.decryptString(encrypted, keyPair.getPrivate());
+// Encrypt/decrypt with encodings and auto-chunking when needed
+String ciphertext = RSAUtil.encrypt(
+    "This is a very long plaintext ...",
+    keyPair.getPublic(),
+    RSAPadding.PKCS1,
+    InputEncoding.UTF8,
+    OutputEncoding.BASE64
+);
 
-// Digital signatures
-byte[] signature = RSAUtil.sign("Hello World", keyPair.getPrivate());
-boolean isValid = RSAUtil.verify("Hello World", signature, keyPair.getPublic());
+String plaintext = RSAUtil.decrypt(
+    ciphertext,
+    keyPair.getPrivate(),
+    RSAPadding.PKCS1,
+    InputEncoding.BASE64,
+    OutputEncoding.UTF8
+);
 
-// Different padding schemes
-byte[] encryptedPKCS1 = RSAUtil.encrypt(data, publicKey, RSAUtil.PADDING_PKCS1);
-byte[] encryptedOAEP = RSAUtil.encrypt(data, publicKey, RSAUtil.PADDING_OAEP_SHA256);
-
-// Different hash algorithms
-byte[] sig256 = RSAUtil.sign(data, privateKey, RSAUtil.SIG_SHA256_RSA);
-byte[] sig384 = RSAUtil.sign(data, privateKey, RSAUtil.SIG_SHA384_RSA);
-
-// File operations
-byte[] encryptedFile = RSAUtil.encryptFile(inputFile, publicKey);
-byte[] decryptedFile = RSAUtil.decryptFile(encryptedFile, privateKey);
-
-// Key import/export
-String exportedPrivateKey = RSAUtil.exportPrivateKey(privateKey);
-String exportedPublicKey = RSAUtil.exportPublicKey(publicKey);
-
-PrivateKey importedPrivateKey = RSAUtil.importPrivateKey(exportedPrivateKey);
-PublicKey importedPublicKey = RSAUtil.importPublicKey(exportedPublicKey);
-
-// Encoding support
-String base64Sig = RSAUtil.signToBase64("Hello World", privateKey);
-String hexSig = RSAUtil.signToHex("Hello World", privateKey);
-
-boolean isValid = RSAUtil.verifyFromBase64("Hello World", base64Sig, publicKey);
-boolean isValid = RSAUtil.verifyFromHex("Hello World", hexSig, publicKey);
+// OAEP-SHA256 variant
+String ct2 = RSAUtil.encrypt(
+    "Hello OAEP",
+    keyPair.getPublic(),
+    RSAPadding.OAEP_SHA256,
+    InputEncoding.UTF8,
+    OutputEncoding.BASE64
+);
+String pt2 = RSAUtil.decrypt(
+    ct2,
+    keyPair.getPrivate(),
+    RSAPadding.OAEP_SHA256,
+    InputEncoding.BASE64,
+    OutputEncoding.UTF8
+);
 ```
 
 ### **Text Case Conversion Utilities**
@@ -516,101 +516,4 @@ mvn javadoc:javadoc
 - **`RC4Util`**: RC4 stream cipher utilities (variable key sizes)
 - **`ECDSAUtil`**: ECDSA digital signature utilities (multiple curves, SHA variants)
 - **`RSAUtil`**: RSA encryption and digital signature utilities (multiple key sizes, padding schemes)
-- **`TextCaseUtil`**: Text case conversion utilities (12 formats, unicode-aware splitting, improved word boundary detection, camelCase/PascalCase preservation)
-
-### **Encoding Support**
-
-- **`InputEncoding`**: Supported input formats
-- **`OutputEncoding`**: Available output formats
-
-## 📖 Technical Documentation
-
-For in-depth technical information about each algorithm and implementation:
-
-- **[CRC Technical Documentation](docs/CRC-Technical-Documentation.md)** - Cyclic Redundancy Check algorithms
-- **[MD Technical Documentation](docs/MD-Technical-Documentation.md)** - Message Digest family (MD2, MD4, MD5)
-- **[SHA and HMAC Technical Documentation](docs/SHA-and-HMAC-Technical-Documentation.md)** - Secure Hash Algorithms and HMAC
-- **[Keccak Technical Documentation](docs/Keccak-Technical-Documentation.md)** - Keccak family hash functions
-- **[RIPEMD Technical Documentation](docs/RIPEMD-Technical-Documentation.md)** - RIPEMD family hash functions
-- **[BLAKE Technical Documentation](docs/BLAKE-Technical-Documentation.md)** - BLAKE family hash functions
-- **[AES Technical Documentation](docs/AES-Technical-Documentation.md)** - Advanced Encryption Standard
-- **[DES, Triple DES, RC4 Technical Documentation](docs/DES-TripleDES-RC4-Technical-Documentation.md)** - Legacy encryption algorithms
-- **[ECDSA Technical Documentation](docs/ECDSA-Technical-Documentation.md)** - Elliptic Curve Digital Signature Algorithm
-- **[RSA Technical Documentation](docs/RSA-Technical-Documentation.md)** - Rivest-Shamir-Adleman algorithm
-- **[Text Case Conversion Technical Documentation](docs/Text-Case-Conversion-Technical-Documentation.md)** - Text case conversion utilities
-
-## 🧪 Testing
-
-The library includes comprehensive unit tests with standard CRC test vectors:
-
-```bash
-mvn test
-```
-
-All tests use the standard "123456789" test vector for validation.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass (`mvn test`)
-6. Commit your changes (`git commit -m 'Add amazing feature'`)
-7. Push to the branch (`git push origin feature/amazing-feature`)
-8. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Support
-
-For support and questions:
-
-- 📝 Create an issue on GitHub
-- 📚 Check the documentation and examples
-- 🧪 Review the test cases for usage patterns
-- 💬 Join discussions in GitHub Issues
-
-## 📋 Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for a detailed list of changes and versions.
-
-## 🎯 Roadmap
-
-### **Phase 1: Hash Functions** ✅
-
-- [x] CRC algorithms (1-64 bits)
-- [x] Input/Output encoding support
-- [x] File processing capabilities
-
-### **Phase 2: Cryptographic Functions** ✅
-
-- [x] MD family (MD-2, MD-4, MD-5) with HMAC support
-- [x] SHA family (SHA-1, SHA-2, SHA-3) with HMAC support
-- [x] Keccak family (Keccak-224, Keccak-256, Keccak-288, Keccak-384, Keccak-512)
-- [x] RIPEMD family (RIPEMD-128, RIPEMD-160, RIPEMD-256, RIPEMD-320)
-- [x] BLAKE family (BLAKE2b-256, BLAKE2b-512, BLAKE2s-128, BLAKE2s-256)
-- [x] AES encryption (AES-128/192/256, ECB, CBC, CFB, OFB, CTR, GCM)
-
-### **Phase 3: Encryption & Signatures** 📋
-
-- [x] DES, Triple DES, RC4 (Legacy algorithms with security warnings)
-- [x] ECDSA (multiple curves)
-- [x] RSA operations
-
-### **Phase 4: Data Processing** 📋
-
-- [ ] JSON/XML validation and formatting
-- [x] Text case conversion utilities
-- [ ] Character encoding support
-- [ ] File processing utilities
-
-## ⭐ Star History
-
-If you find this library useful, please consider giving it a star on GitHub!
-
----
-
-**Built with ❤️ by [haiphamcoder](https://github.com/haiphamcoder)**
+- **`TextCaseUtil`
