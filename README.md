@@ -109,7 +109,7 @@ A comprehensive Java utility library for cryptography, hashing, encoding, and da
 <dependency>
     <groupId>io.github.haiphamcoder</groupId>
     <artifactId>crypto-utils</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
 </dependency>
 ```
 
@@ -516,7 +516,7 @@ mvn javadoc:javadoc
 - **`RC4Util`**: RC4 stream cipher utilities (variable key sizes)
 - **`ECDSAUtil`**: ECDSA digital signature utilities (multiple curves, SHA variants)
 - **`RSAUtil`**: RSA encryption and digital signature utilities (multiple key sizes, padding schemes)
-- **`TextCaseUtil`**: Text case conversion utilities (12 formats, unicode-aware splitting, improved word boundary detection)
+- **`TextCaseUtil`**: Text case conversion utilities (12 formats, unicode-aware splitting, improved word boundary detection, camelCase/PascalCase preservation)
 
 ### **Encoding Support**
 

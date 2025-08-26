@@ -186,7 +186,9 @@ public final class TextCaseUtil {
             return text;
         }
         
-        String[] words = SEPARATOR_PATTERN.split(text.trim());
+        // Use normalizeInput to properly handle camelCase and PascalCase inputs
+        String normalized = normalizeInput(text);
+        String[] words = normalized.split("\\s+");
         if (words.length == 0) {
             return "";
         }
@@ -224,7 +226,9 @@ public final class TextCaseUtil {
             return text;
         }
         
-        String[] words = SEPARATOR_PATTERN.split(text.trim());
+        // Use normalizeInput to properly handle camelCase and PascalCase inputs
+        String normalized = normalizeInput(text);
+        String[] words = normalized.split("\\s+");
         if (words.length == 0) {
             return "";
         }

@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.3] - 2025-08-26
+
+### Fixed
+
+- **TextCaseUtil**: Fixed camelCase and PascalCase preservation when input already has correct format
+- **TextCaseUtil**: Fixed issue where `"       helloWorld    "` was incorrectly converted to `"helloworld"` instead of preserving `"helloWorld"`
+- **TextCaseUtil**: Fixed issue where `"     HelloWorld    "` was incorrectly converted to `"Helloworld"` instead of preserving `"HelloWorld"`
+- **TextCaseUtil**: Improved `normalizeInput` method to detect and preserve existing camelCase/PascalCase formats before processing
+
+### Changed
+
+- **TextCaseUtil**: Enhanced `toCamelCase` and `toPascalCase` methods to use improved `normalizeInput` logic
+- **TextCaseUtil**: Updated case conversion algorithms to intelligently handle inputs that are already in the target format
+- **TextCaseUtil**: Improved word boundary detection to avoid over-processing correctly formatted inputs
+
+### Technical Details
+
+- Enhanced camelCase detection pattern: `^[a-z][a-zA-Z0-9]*$` (starts with lowercase, contains uppercase)
+- Enhanced PascalCase detection pattern: `^[A-Z][a-zA-Z0-9]*$` (starts with uppercase, contains uppercase)
+- Improved input normalization logic to preserve existing formats while still processing mixed-format inputs correctly
+
 ## [0.0.2] - 2025-08-26
 
 ### Fixed

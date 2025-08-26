@@ -371,6 +371,32 @@ class TextCaseUtilTest {
         assertEquals(original, back);
     }
 
+    /**
+     * Test that camelCase and PascalCase inputs are preserved correctly
+     * when they already have the correct format.
+     */
+    @Test
+    void testPreserveExistingCaseFormats() {
+        // Test camelCase preservation
+        assertEquals("helloWorld", TextCaseUtil.toCamelCase("       helloWorld    "));
+        assertEquals("helloWorld", TextCaseUtil.toCamelCase("helloWorld"));
+        assertEquals("helloWorld", TextCaseUtil.toCamelCase("  helloWorld  "));
+        
+        // Test PascalCase preservation  
+        assertEquals("HelloWorld", TextCaseUtil.toPascalCase("     HelloWorld    "));
+        assertEquals("HelloWorld", TextCaseUtil.toPascalCase("HelloWorld"));
+        assertEquals("HelloWorld", TextCaseUtil.toPascalCase("  HelloWorld  "));
+        
+        // Test that mixed formats are still processed correctly
+        assertEquals("helloWorld", TextCaseUtil.toCamelCase("hello_world"));
+        assertEquals("helloWorld", TextCaseUtil.toCamelCase("hello-world"));
+        assertEquals("helloWorld", TextCaseUtil.toCamelCase("hello world"));
+        
+        assertEquals("HelloWorld", TextCaseUtil.toPascalCase("hello_world"));
+        assertEquals("HelloWorld", TextCaseUtil.toPascalCase("hello-world"));
+        assertEquals("HelloWorld", TextCaseUtil.toPascalCase("hello world"));
+    }
+
     @Test
     void testUserExample() {
         String input = "xin cHAo    caC   BAN";
