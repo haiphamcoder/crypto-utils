@@ -139,6 +139,28 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Maven GPG Plugin for signing artifacts -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <executable>gpg2</executable>
+                    <keyname>28BB18E1</keyname>
+                    <useAgent>false</useAgent>
+                    <defaultKeyring>false</defaultKeyring>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
